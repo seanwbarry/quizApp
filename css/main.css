@@ -1,0 +1,211 @@
+h1 {
+	margin: 0;
+	padding: 0;
+}
+
+.navigationBackground {
+	/*border: blue solid 1px;*/
+	position:relative;
+}
+
+.title {
+	/*border:red solid 1px;*/
+	text-align: center;
+	font-size: 2rem;
+	margin:1rem 0 0.75rem;
+}
+
+.navBar {
+	display:inline-block;
+	position:absolute;
+	top: 10px;
+	right: 20%;
+}
+
+.playAgain {
+	/*border: green solid 1px;*/
+	padding:0.1rem 1rem;
+	background-color: lightgrey;
+}
+
+.questionProgress {
+	/*border:red solid 1px;*/
+	width: 40%;
+	margin:0 auto;
+
+}
+
+.questionProgress ul {
+	list-style: none;
+	text-align: center;
+	padding:0;
+	margin: 2rem 0 0.5rem;
+}
+
+.questionProgressBox {
+	border:black solid 1px;
+	display:inline-block;
+	width:25px;
+    height:25px;
+    margin:0;
+    position: relative;
+}
+
+.questionProgressBoxCurrent {
+    -webkit-box-shadow:inset 0px 0px 0px 3px #000000;
+    -moz-box-shadow:inset 0px 0px 0px 3px #000000;
+    box-shadow:inset 0px 0px 0px 3px #000000;
+}
+
+/*
+**Cross
+**
+*/
+
+.cross{
+	cursor:pointer;
+    width:25px;
+    height:25px;
+}
+
+.cross:before,.cross:after{
+    content:'';
+    position:absolute;
+    width:21px;
+    height:4px;
+    background-color:black;
+    border-radius:2px;
+    top:42%;
+}
+
+.cross:before{
+	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	transform:rotate(45deg);
+	left:2px;
+}
+
+.cross:after{
+	-webkit-transform:rotate(-45deg);
+	-moz-transform:rotate(-45deg);
+	transform:rotate(-45deg);
+	right:2px;
+}
+
+/*
+**
+**Tick
+*/
+
+.tick{
+	cursor:pointer;
+    width:25px;
+    height:25px;
+}
+
+.tick:before{
+    content:'';
+    position:absolute;
+    width: 10px;
+    height:4px;
+    background-color:black;
+    border-radius:2px;
+    top:65%;
+    
+}
+
+.tick:after{
+    content:'';
+    position:absolute;
+    width:23px;
+    height:4px;
+    background-color:black;
+    border-radius:2px;
+    top:45%;
+}
+
+.tick:before{
+	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	transform:rotate(45deg);
+	left:1px;
+}
+
+.tick:after{
+	-webkit-transform:rotate(-50deg);
+	-moz-transform:rotate(-50deg);
+	transform:rotate(-50deg);
+	left:3.25px;
+}
+
+/*
+**
+**Quiz Area
+*/
+
+.quizArea {
+	border:darkgrey solid 2px;
+	background-color: #f9f9f9;
+	text-align: center;
+	margin:0 20%;
+	padding:0 0 2em;
+}
+
+.questionText {
+	/*border:purple solid 1px;*/
+	width: 80%;
+	margin: 0 auto;
+	padding:0 2rem;
+	font-size: 1em;
+	line-height: 1.5em;
+	/*width:80%;
+	margin: 0 auto;
+	padding: 0 2em 2em;*/
+}
+
+.questionAnswers {
+	/*border:red 1px solid;*/
+	text-align: center;
+	width:80%;
+	margin: 0 auto;
+	padding: 0 2rem 1rem;
+}
+
+.questionAnswersUl {
+	/*border:green 1px solid;*/
+	text-align: center;
+	width:80%;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+}
+
+.questionAnswersItems {
+	border:black 1px solid;
+	background-color: lightgrey;
+	display:inline-block;
+	width: 25%;
+	margin:1rem;
+	padding:0.5rem 1rem;
+	font-size: 1.25em;
+}
+
+.questionAnswersItemsClick {
+	border:black 1px solid;
+	background-color: darkgrey;
+	display:inline-block;
+	width: 25%;
+	margin:1rem;
+	padding:1rem;
+	font-size: 1.25em;
+}
+
+.questionSubmit {
+	width: 30%;
+	height: 3rem;
+}
+
+.results {
+	margin: 1rem;
+	font-size: 2em;
+}
