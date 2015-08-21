@@ -188,6 +188,10 @@ h1 {
 	margin:1rem;
 	padding:0.5rem 1rem;
 	font-size: 1.25em;
+	/*
+	if word doesn't fit - make font smaller???
+	*/
+	word-wrap: break-word;
 }
 
 .questionAnswersItemsClick {
