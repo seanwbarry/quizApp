@@ -35,7 +35,7 @@ $(document).ready(function () {
 		}
 	}
 
-	function questionProgressUpdate(questionNumber) {
+	function currentQuestion(questionNumber) {
 		$('#questionProgressStatus li:nth-child('+(questionNumber)+')').removeClass("questionProgressBoxCurrent");
 		$('#questionProgressStatus li:nth-child('+(questionNumber+1)+')').addClass("questionProgressBoxCurrent");
 	}
@@ -48,54 +48,85 @@ $(document).ready(function () {
 
 	function endGameScore () {
 		$('#score').text(numberOfCorrectQuestions);
-		console.log(numberOfCorrectQuestions);
+		//console.log(numberOfCorrectQuestions);
+	}
+
+	function clicked () {
+		var whatWasClicked = $('li.questionAnswersItemsClick').index();
+		//console.log(whatWasClicked);
+		return (whatWasClicked);
+	}
+
+	function rightOrWrong (lastUserAnswer) {
+		console.log(questionNumber-1);
+		console.log(lastUserAnswer);
+		console.log(questionArray[questionNumber-1].correct);
+		if (questionArray[questionNumber-1].correct==lastUserAnswer) {
+			console.log('correct!');
+			numberOfCorrectQuestions++;
+			$('#questionProgressStatus li:nth-child('+(questionNumber)+')').addClass("tick");
+		} else {
+			console.log('wrong!');
+			$('#questionProgressStatus li:nth-child('+(questionNumber)+')').addClass("cross");
+		}
+	}
+
+	function whatAnswerDidYouClickOn (lastUserAnswer) {
+		$('.questionAnswersUl li').removeClass("questionAnswersItemsClick");
+		$('.questionAnswersUl li:nth-child('+(lastUserAnswer+1)+')').addClass("questionAnswersItemsClick");
+		//console.log(lastUserAnswer);
+		return lastUserAnswer;
+
 	}
 	//initialisation on page load
 	var questionNumber = 0;
 	var numberOfCorrectQuestions = 0;
 
 	populateFields(questionArray[questionNumber]);
-	$('#questionProgressStatus li:nth-child(1)').addClass("questionProgressBoxCurrent");
+	//$('#questionProgressStatus li:nth-child(1)').addClass("questionProgressBoxCurrent");
 	$('#questionTime').css('display','');
 	$('#endArea').css('display','none');
-	//when you click within the ul, your answer is the closest li
-	//this is broken - it needs to actually be on the li...
-	$('ul').on('click', 'li', function () {
-		//the li number that they clicked
-		var lastUserAnswer = $(this).index();
-		//find out if user correctly answered the question
-		if (questionNumber<5) {
-			if (questionArray[questionNumber].correct==lastUserAnswer) {
-				numberOfCorrectQuestions++;
-				$('#questionProgressStatus li:nth-child('+(questionNumber+1)+')').addClass("tick");
-			} else {
-				$('#questionProgressStatus li:nth-child('+(questionNumber+1)+')').addClass("cross");
-			}
-		}
+	//rightOrWrong();
+	currentQuestion(questionNumber);
+//----------------------------------------
+
+	$('.playAgain').click(function() {
+		location.reload();
 	});
 
-	//change question text when you click on the ul
-	$('.questionAnswersUl').click(function () {
+//----------------------------------------
+	//put lastUserAnswer inside the function somehow...?
+	
+		$('.questionAnswersUl').on('click', 'li', function asdf () {
+			var lastUserAnswer = $(this).index();
+			whatAnswerDidYouClickOn(lastUserAnswer);
+			return lastUserAnswer;
+		});	
+		
+	//change question text when you click on the button
+	$('.questionSubmit').on('click', function () {
 		questionNumber++;
 		if (questionNumber<5) {
-			questionProgressUpdate(questionNumber);
+			rightOrWrong(clicked());
+			currentQuestion(questionNumber);
 			populateFields(questionArray[questionNumber]);		
 		} else {
+			rightOrWrong(clicked());
 			endGameDisplay();
 			endGameScore();
 		}
+
 		//liClicked();
 		//why doesn't this run the first time I click??
 		//is it because the ul doesn't have anything in it???
-		/*
-		$('ul').on('click', 'li', function () {
+		
+		/*$('ul').on('click', 'li', function () {
 			console.log($(this).index());
-		})
-		*/
+		})*/
+		
 	});
 
 });
-
 //#questionProgressStatus
  //:nth-child('+questionNumber+')'
 
@@ -103,12 +134,17 @@ $(document).ready(function () {
 Questions/things to do:
 
 why does ul.on(click) work in that spot - is it because the ul has not been populated?
-have to make the reset and play again buttons work
+
 have to make ONLY the button clickable
 have to make the button selectable and then only evaluate when you click 'submit answer'
 
 make some graph thing? maybe...
 
 mockups: https://seanwbarry.mybalsamiq.com/projects/thinkfulquizapp/Quiz%20mockup%201
+
+//why didn't my click thing work when I used:
+$('.questionAnswersItems').click(function () {
+		questionNumber++;
+		if (questionNumber<5) {..............
 
 */
